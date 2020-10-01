@@ -1,4 +1,4 @@
-// needs to display the correct day and time inside the work day scheduler container
+// Copy and pas// needs to display the correct day and time inside the work day scheduler container
 // needs to display the time with am pm format
 // time goes from 9am to 5pm
 // attach style from css to vars
@@ -10,33 +10,37 @@
 
 $(document).ready(function () {
   // DOM VARIABLES
-  // JS VARIABLES
-  // FUNCTION DEFINITIONS
+  // APP VARIABLES
+  const hours = [
+    "9AM",
+    "10AM",
+    "11AM",
+    "12PM",
+    "1PM",
+    "2PM",
+    "3PM",
+    "4PM",
+    "5PM",
+  ];
+  //TO RUN ONCE WHEN PAGE LOADS:
   init();
   function init() {
     //call all functions that need to run once when page loads
+    //AND colorcode schedule
     buildScheduleHtml();
-    //colorcode schedule
     //pull data from localStorage (if any)
     //set current time in header
     setHeaderTime();
   }
   function buildScheduleHtml() {
-    let hours = [
-      "9AM",
-      "10AM",
-      "11AM",
-      "12PM",
-      "1PM",
-      "2PM",
-      "3PM",
-      "4PM",
-      "5PM",
-    ];
+    let currentHour = moment().format("ha").toUpperCase();
+    let timeClass = "past";
     for (let hour of hours) {
+      if (hour === currentHour) timeClass = "present";
+      else if (timeClass === "present") timeClass = "future";
       var row = $("<div>").attr("class", "row");
       var time = $("<p>").text(hour).attr("class", "col-1 hour");
-      var text = $("<textarea>").attr("class", "col-10");
+      var text = $("<textarea>").attr("class", "col-10 " + timeClass);
       var btn = $("<button>")
         .attr("class", "saveBtn col-1")
         .html("<i class='fa fa-lock'>");
@@ -49,6 +53,6 @@ $(document).ready(function () {
   function setHeaderTime() {
     $("#currentDay").text(moment().format("MMMM Do YYYY"));
   }
-  // FUNCTION CALLS
+  //
   // EVENT LISTENERS
 });
