@@ -19,6 +19,7 @@ $(document).ready(function () {
     //colorcode schedule
     //pull data from localStorage (if any)
     //set current time in header
+    setHeaderTime();
   }
   function buildScheduleHtml() {
     let hours = [
@@ -44,6 +45,9 @@ $(document).ready(function () {
       row.append(btn);
       $(".container").append(row);
     }
+  }
+  function setHeaderTime() {
+    $("#currentDay").text(moment().format("MMMM Do YYYY"));
   }
   // FUNCTION CALLS
   // EVENT LISTENERS
