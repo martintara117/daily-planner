@@ -58,7 +58,7 @@ $(document).ready(function () {
     }
   }
   function setHeaderTime() {
-    $("#currentDay").text(moment().format("MMMM Do YYYY"));
+    $("#currentDay").text(moment().format("MMMM Do, YYYY"));
   }
   //
   // EVENT HANDLERS
